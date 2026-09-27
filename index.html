@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Todo App</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    
+    <!-- Navbar / Header Area -->
+    <header>
+        <nav class="navbar">
+            <h2 class="logo">Task<span>Flow</span></h2>
+            <div class="darkToggle">
+                <input type="checkbox" id="darkModeBtn">
+                <label for="darkModeBtn" class="toggleSlider"></label>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Card Container -->
+    <main class="main-container">
+        
+        <!-- Live Task Statistics Counter -->
+        <section class="stats-section">
+            <div class="stat-card">Total: <span id="totalCount">0</span></div>
+            <div class="stat-card pending-card">Pending: <span id="pendingCount">0</span></div>
+            <div class="stat-card progress-card">In Progress: <span id="progressCount">0</span></div>
+            <div class="stat-card completed-card">Done: <span id="completedCount">0</span></div>
+        </section>
+
+        <!-- Input Form Area with Status Selector -->
+        <section class="todo-input-section">
+            <input type="text" id="todoInput" placeholder="Add a new task..." autocomplete="off">
+            
+            <select id="todoStatusSelect">
+                <option value="Pending">⏳ Pending</option>
+                <option value="In Progress">⚡ In Progress</option>
+                <option value="Completed">✅ Completed</option>
+            </select>
+
+            <button id="addTodoBtn">Add Task</button>
+        </section>
+
+        <!-- Dynamic List Area -->
+        <section class="todo-list-section">
+            <ul id="todoList"></ul>
+        </section>
+
+        <!-- Clear All Button -->
+        <div class="actions-footer">
+            <button id="clearAllBtn" class="clear-btn">🧹 Clear All Tasks</button>
+        </div>
+    </main>
+
+    <!-- Simple Cleaner Footer -->
+    <footer>
+        <p>Copyright &copy; 2026. Design By <a href="https://amritghuman.site/">Amritpal Singh</a>. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

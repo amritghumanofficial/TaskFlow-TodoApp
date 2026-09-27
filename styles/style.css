@@ -1,0 +1,392 @@
+/* --- Variables & Themes --- */
+:root {
+    --bg-body: #f4f7f6;
+    --bg-card: #ffffff;
+    --text-primary: #333333;
+    --nav-bg: #e2e8f0;
+    --accent: #2196f3;
+    
+    /* Status Soft Colors for Light Mode */
+    --color-pending: #ffeaa7;
+    --color-progress: #74b9ff;
+    --color-completed: #55efc4;
+    --text-pending: #d63031;
+    --text-progress: #0984e3;
+    --text-completed: #00b894;
+}
+
+body.dark-mode {
+    --bg-body: #121212;
+    --bg-card: #1e1e1e;
+    --text-primary: #ffffff;
+    --nav-bg: #2d2d2d;
+    --accent: #00a8ff;
+
+    /* Status Soft Colors for Dark Mode */
+    --color-pending: #3d3420;
+    --color-progress: #1a365d;
+    --color-completed: #144534;
+    --text-pending: #ff7675;
+    --text-progress: #74b9ff;
+    --text-completed: #55efc4;
+}
+
+/* --- Body Settings --- */
+body {
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- Navbar / Header Area --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 800px;
+    margin: 40px auto 20px auto;
+    padding: 15px 30px;
+    background-color: var(--nav-bg);
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+/* --- Theme Toggle System --- */
+.darkToggle {
+    position: relative;
+    width: 60px;
+    height: 30px;
+}
+
+.darkToggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggleSlider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #b0bec5;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.toggleSlider::before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+input:checked + .toggleSlider {
+    background-color: var(--accent);
+}
+
+input:checked + .toggleSlider::before {
+    transform: translateX(30px);
+}
+
+/* --- Layout Container --- */
+.main-container {
+    max-width: 800px;
+    width: 90%;
+    margin: 20px auto;
+    background-color: var(--bg-card);
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 30px 20px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+/* --- Task Statistics Counter Grid --- */
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background-color: var(--nav-bg);
+    padding: 12px;
+    text-align: center;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.stat-card span {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+/* --- Input Form Area --- */
+.todo-input-section {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+#todoInput {
+    flex: 2;
+    padding: 14px 18px;
+    border: 2px solid var(--nav-bg);
+    border-radius: 12px;
+    font-size: 16px;
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#todoInput:focus {
+    border-color: var(--accent);
+}
+
+#todoStatusSelect {
+    flex: 1;
+    padding: 14px;
+    border: 2px solid var(--nav-bg);
+    border-radius: 12px;
+    font-size: 15px;
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    outline: none;
+    cursor: pointer;
+}
+
+#addTodoBtn {
+    border: none;
+    background-color: var(--accent);
+    color: white;
+    padding: 0 25px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+#addTodoBtn:hover {
+    opacity: 0.9;
+}
+
+/* --- Dynamic List Area & Custom Scrollbar Hiding --- */
+.todo-list-section {
+    max-height: 400px; 
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.todo-list-section::-webkit-scrollbar {
+    display: none;
+}
+
+#todoList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* --- Todo Item Component --- */
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--nav-bg);
+    padding: 14px 20px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin-bottom 0.3s ease;
+}
+
+.task-details {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+.task-text {
+    font-size: 16px;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Status Badges Styling */
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Left Borders & Badge Colors based on status class */
+.todo-item.pending { border-left: 5px solid var(--text-pending); }
+.status-badge.pending { background-color: var(--color-pending); color: var(--text-pending); }
+
+.todo-item.in-progress { border-left: 5px solid var(--text-progress); }
+.status-badge.in-progress { background-color: var(--color-progress); color: var(--text-progress); }
+
+.todo-item.completed { border-left: 5px solid var(--text-completed); }
+.status-badge.completed { background-color: var(--color-completed); color: var(--text-completed); }
+
+.todo-item.completed .task-text {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+/* --- Action Buttons --- */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.edit-btn, .delete-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    transform: scale(1.15);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .edit-btn:hover, body.dark-mode .delete-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Actions Footer (Clear All) --- */
+.actions-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.clear-btn {
+    background-color: #ff7675;
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.clear-btn:hover {
+    opacity: 0.9;
+}
+
+/* --- Empty Messaging State --- */
+.empty-msg {
+    text-align: center;
+    font-size: 16px;
+    color: #777;
+    padding: 30px 0;
+    font-weight: 500;
+}
+
+/* --- Delete Animation CSS --- */
+.todo-item.delete-animation {
+    transform: translateX(-50px);
+    opacity: 0;
+    margin-bottom: -50px;
+}
+
+/* --- Footer Area --- */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    font-size: 14px;
+    color: #777;
+}
+
+footer a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+/* --- Mobile Responsiveness Media Queries --- */
+@media (max-width: 650px) {
+    .navbar {
+        margin: 20px 15px 10px 15px;
+        padding: 12px 20px;
+    }
+
+    .main-container {
+        width: 92%;
+        margin: 10px auto;
+        padding: 20px 15px;
+    }
+
+    /* Stats Grid down to 2x2 layout on mobile */
+    .stats-section {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .stat-card {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    /* Input stacking on smaller mobile rows */
+    .todo-input-section {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #todoInput, #todoStatusSelect, #addTodoBtn {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #addTodoBtn {
+        padding: 14px 0;
+    }
+
+    .todo-item {
+        padding: 12px 14px;
+    }
+
+    .task-details {
+        gap: 10px;
+    }
+
+    .task-text {
+        font-size: 15px;
+    }
+}
